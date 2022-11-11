@@ -13,8 +13,6 @@ body{
 }
 
 #gallery{
-    position: relative;
-
     width: 800px;
     height: 300px;
 
@@ -25,9 +23,38 @@ body{
     object-fit: cover;
     object-position: center;
     display: none;
+
+    width: 800px;
+    height: 300px;
 }
 #gallery .active{
     display: block;
+}
+
+#thumbs{
+    position: relative;
+
+    width: 200px;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#thumbs img{
+    object-fit: cover;
+    object-position: center;
+
+    width: 200px;
+    height: calc(100% / 3);
+
+    overflow: hidden;
+
+    filter: blur(1px) brightness(.5);
+}
+#thumbs .active{
+    filter: none;
+    border: inset 2px white;
 }
 
 button{
