@@ -6,7 +6,13 @@ const inputDown = document.getElementById("input-down");
 
 // Gallery setup
 const nOfImages = 5;
-const gallery = [];
+const gallery = [
+    "01.webp",
+    "02.webp",
+    "03.webp",
+    "04.webp",
+    "05.webp",
+];
 const thumbs = [];
 
 // Active item
@@ -17,7 +23,7 @@ for (let i = 0; i < nOfImages; i++) {
 
     // Create image element
     const image = document.createElement("img");
-    image.src = `img/0${i + 1}.webp`;
+    image.src = `img/${gallery[i]}`;
 
     // Link gallery active element to activeImage
     if (i == activeImage) {
@@ -26,7 +32,7 @@ for (let i = 0; i < nOfImages; i++) {
 
     // Add image to galleries
     galleryElement.append(image);
-    gallery.push(image);
+    gallery[i] = image;
 
     // Add image to thumbnails
     let imageClone = image.cloneNode();
