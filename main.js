@@ -1,61 +1,81 @@
 // References
 const galleryElement = document.getElementById("gallery");
-const inputToRight = document.getElementById("input-to-right");
-const inputToLeft = document.getElementById("input-to-left");
+const inputUp = document.getElementById("input-up");
+const inputDown = document.getElementById("input-down");
 
-// Array with images PATHS
-const gallery = [
-    "path1",
-    "path2"
-];
+// Gallery setup
+const nOfImages = 5;
+const gallery = [];
 
 // Active item
-let activeItem = 0;
+let activeImage = 0;
 
-// Parse gallery (from PATHS to DOMElements)
-for(let i = 0; i < gallery.length; i++){
+// Build gallery
+for (let i = 0; i < nOfImages; i++) {
 
     // Create image element
     const image = document.createElement("img");
-    image.src = gallery[i];
+    image.src = `img/0${i + 1}.webp`;
 
-    // If it's the first image set it to active
-    if(i == activeItem){
+    // Link gallery active element to activeImage
+    if (i == activeImage) {
         image.classList.add("active");
     }
 
-    // Add to DOM gallery
+    // Add image to galleries
     galleryElement.append(image);
+    gallery.push(image);
+}
 
-    // Save reference (overwrite gallery path)
-    gallery[i] = image;
+// Check which buttons to activate
+if (activeImage == gallery.length - 1) {
+    // no more images on right
+
+    inputUp.disabled = true;
+
+}
+if (activeImage == 0) {
+    // no more images on left
+
+    inputDown.disabled = true;
+
 }
 
 // Listen for clicks
-inputToRight.addEventListener("click", function(){
+inputUp.addEventListener("click", function () {
 
-    switch(activeItem ){
-        case gallery.length - 2
-
+    // Check for images on right
+    if (activeImage == gallery.length - 2) {
+        // no more images on right
+        inputUp.disabled = true;
     }
 
-    if(activeItem < gallery.length - 1){
-        // active item in gallery
+    // Activate inputDown
+    inputDown.disabled = false;
 
-        // Hide old active image
-        gallery[activeItem].classList.remove("active");
+    // Hide old active image
+    gallery[activeImage].classList.remove("active");
 
-        // Dispay new active image
-        gallery[++activeItem].classList.add("active");
+    // Dispay new active image
+    gallery[++activeImage].classList.add("active");
 
-        // Check if it is the last available image
-        if()
+});
+inputDown.addEventListener("click", function () {
 
-    } else {
-        // active item out of gallery
-
-        
+    // Check for images on right
+    if (activeImage == 1) {
+        // no more images on right
+        inputDown.disabled = true;
     }
+
+    // Activate inputDown
+    inputUp.disabled = false;
+
+    // Hide old active image
+    gallery[activeImage].classList.remove("active");
+
+    // Dispay new active image
+    gallery[--activeImage].classList.add("active");
 
 });
 
